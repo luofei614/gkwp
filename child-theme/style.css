@@ -1,0 +1,13 @@
+/*
+Theme Name: gkwp-子主题
+Template: gkwp
+Theme URI: http://www.3g4k.com
+Author: 三吉工社
+Author URI: http://weibo.com/3g4k
+Description: gkwp是首个wordpress中文主题开发框架，它会使我们开发主题更加方便简单。它具有以下特性：1，支持子主题(child-theme)开发模式，不改变框架本身代码，实现对文件的修改。强烈建议大家使用子主题进行开发。2，强大的配置机制，很多功能不用写代码，设置配置即可完成。3，集成了bootstrap，bootstrap是目前流行的前端框架，熟悉bootstrap的人用gkwp会更加简单，当然你也可以不用bootstrap，通过配置将默认的bootstrap去掉。 4，重写了wordpress原有的小工具（widget）， 小工具独立出了模版，使我们修改小工具更加容易。 5，建立主题选项超级简单。 6，开发调试模式
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: dark, light, white, black, gray, one-column, two-columns, left-sidebar, right-sidebar, fixed-width, flexible-width, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-image-header, featured-images, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
+Text Domain: gkwp
+*/
