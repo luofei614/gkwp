@@ -35,7 +35,7 @@ get_header();
                         endif;
                 ?>
         </div>
-        <div class="span4"><div class="well"><?php  get_sidebar();?></div></div>
+        <section class="span4"><?php  get_sidebar();?></section>
     </div>
 </div>
 <?php

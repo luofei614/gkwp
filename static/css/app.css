@@ -1,0 +1,35 @@
+.commentlist ul.children {
+    list-style: none outside none;
+    margin: 10px 0 18px;
+}
+.edit-link a{ color: #fff;}
+
+#comments-title {
+    border-bottom: 1px solid #EEEEEE;
+    font-size: 19.5px;
+    margin: 0 0 27px;
+}
+.gk_comments{ width: 200px;}
+.gk_comments h3{ line-height: 120%; margin:0;}
+.gk_comments{
+    margin-bottom: 20px;
+}
+.num a:hover{ text-decoration: none;}
+article .more-link{ display: block; text-align: right; margin: 10px;}
+
+
+#site-generator {
+    float: right;
+    font-family: Georgia,"Bitstream Charter",serif;
+    font-style: italic;
+}
+
+#site-generator a {
+    background: url("../img/wordpress.png") no-repeat scroll left center transparent;
+    color: #787878;
+    display: inline-block;
+    line-height: 16px;
+    padding-left: 20px;
+    text-decoration: none;
+}
+.post-edit-link:hover{ text-decoration: none;}

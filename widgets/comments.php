@@ -14,15 +14,15 @@
     if ( $title )
         echo $before_title . $title . $after_title;
 
- echo '<ul>';
+ echo '<ul class="unstyled">';
         if ( $comments ) {
             foreach ( (array) $comments as $comment):
                 ?>
-            <li class="clearfix ysd_comments_list">
-                    <div class="pull-left ysd_avatar">
+            <li class="clearfix gk_comments_list">
+                    <div class="pull-left gk_avatar">
                             <a href="<?php echo  get_comments_link($comment->comment_post_ID)?>"><?php echo get_avatar($comment->user_id,50) ;?></a>
                     </div>
-                    <div class="pull-right ysd_comments">
+                    <div class="pull-right gk_comments">
                             <h3><a href="<?php echo  get_comments_link($comment->comment_post_ID)?>"><?php echo get_comment_author_link().' 在  ' .get_the_title($comment->comment_post_ID)?></a></h3>
                             <div>
                                 <a href="<?php echo  get_comments_link($comment->comment_post_ID)?>">

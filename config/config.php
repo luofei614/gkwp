@@ -8,12 +8,13 @@
  */
 return array(
     'debug'=>true,//开启调试后，以管理员身份登录能看见调试信息
+    'sidebar_debug'=>true,
     'content_width'=>630,
     //设置主题支持
     'theme_support'=>array(
         'automatic-feed-links',
         'post-thumbnails',
-        //'post-formats'=>array( 'aside', 'link', 'gallery', 'status', 'quote', 'image' ),
+        'post-formats'=>array( 'aside', 'link', 'gallery', 'status', 'quote', 'image' ),
         'custom-header'=>array(
                 'header-text'=>false,
                 'width' => apply_filters( 'gk_header_image_width', 1000 ),
@@ -24,6 +25,9 @@ return array(
         'custom-background'=>array(
             'default-color'=>'fff'
         )
+    ),
+    'register_nav_menus'=>array(
+        'primary'=>__('主菜单','gkwp')
     ),
     //定义头部图片
     'register_default_headers'=>array(
@@ -78,13 +82,15 @@ return array(
         'bootstrap',
         //'bootstrap-responsive',
         array('lte IE 6','static/css/ie6.min.css'),
-        'style.css'
+        'style.css',
+        'static/css/app.css'
         ),
     'js'=>array(
         'jquery',
         'bootstrap',
         array('lt IE 9','static/js/html5.js'),
         array('lte IE 6','static/js/ie6.min.js'),
+        'static/js/app.js'
     ),
     //主题选项
     'theme_options'=>array(

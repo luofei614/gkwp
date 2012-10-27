@@ -7,12 +7,12 @@
  * @copyright   2012 3g4k.com.
  */
 ?><article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <div class="header clearfix">
+    <div class="page-header clearfix">
             <?php
             if(comments_open() && !post_password_required()):
             ?>
             <div class="num pull-right">
-              <?php comments_popup_link('没有评论','有一人评论','有%人评论') ?>
+              <?php comments_popup_link('<span class="badge badge-warning">没有评论</span>','<span class="badge badge-success">有1人评论</span>','<span class="badge badge-info">有%人评论</span>') ?>
             </div>
             <?php
             endif;
@@ -21,9 +21,9 @@
             <?php
             if('post'==get_post_type()):
             ?>
-            <em><?php echo get_the_author();?>发布于<?php the_date('m/d/Y H:i');?> | <strong>分类：</strong><?php echo get_the_category_list(',')?> <?php
+            <small><?php echo get_the_author();?>发布于<?php the_date('m/d/Y H:i');?> | <strong>分类：</strong><?php echo get_the_category_list(',')?> <?php
             if($tags=get_the_tag_list('',',')) echo ' | <strong>标签</strong>：'.$tags;
-            ?></em>
+            ?></small>
             <?php
             endif;
             ?>
@@ -32,7 +32,7 @@
         <?php 
         is_search()?the_excerpt():the_content('阅读全文→');
         ?>
-        <?php edit_post_link( '编辑'); ?>
+        <?php edit_post_link( '<span class="label">编辑</span>'); ?>
     </div>
 </article>
 <?php
