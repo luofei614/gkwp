@@ -11,8 +11,9 @@
 class GK_Widget_Recent_Comments extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_recent_comments', 'description' =>__('最近评论','gkwp') );
-        parent::__construct('recent-comments', __('最近评论','gkwp'), $widget_ops);
+
+        $widget_ops = array('classname' => 'widget_recent_comments', 'description' => __( 'The most recent comments' ).__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
+        parent::__construct('recent-comments', __('Recent Comments'), $widget_ops);
         $this->alt_option_name = 'widget_recent_comments';
     }
 
@@ -57,7 +58,7 @@ class GK_Widget_Recent_Comments extends WP_Widget {
 class GK_Widget_Pages extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_pages', 'description' => __( 'Your site&#8217;s WordPress Pages') );
+        $widget_ops = array('classname' => 'widget_pages', 'description' => __( 'Your site&#8217;s WordPress Pages').__('，注：此小工具已被三吉工社改装过了！','gkwp') );
         parent::__construct('pages', __('Pages'), $widget_ops);
     }
 
@@ -113,7 +114,7 @@ class GK_Widget_Pages extends WP_Widget {
 class GK_Widget_Links extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('description' => __( "Your blogroll" ) );
+        $widget_ops = array('description' => __( "Your blogroll" ).__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         parent::__construct('links', __('Links'), $widget_ops);
     }
 
@@ -196,7 +197,7 @@ class GK_Widget_Links extends WP_Widget {
 class GK_Widget_Search extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_search', 'description' => __( "A search form for your site") );
+        $widget_ops = array('classname' => 'widget_search', 'description' => __( "A search form for your site").__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         parent::__construct('search', __('Search'), $widget_ops);
     }
 
@@ -230,7 +231,7 @@ class GK_Widget_Search extends WP_Widget {
 class GK_Widget_Archives extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_archive', 'description' => __( 'A monthly archive of your site&#8217;s posts') );
+        $widget_ops = array('classname' => 'widget_archive', 'description' => __( 'A monthly archive of your site&#8217;s posts').__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         parent::__construct('archives', __('Archives'), $widget_ops);
     }
 
@@ -277,7 +278,7 @@ class GK_Widget_Archives extends WP_Widget {
 class GK_Widget_Meta extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_meta', 'description' => __( "Log in/out, admin, feed and WordPress links") );
+        $widget_ops = array('classname' => 'widget_meta', 'description' => __( "Log in/out, admin, feed and WordPress links").__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         parent::__construct('meta', __('Meta'), $widget_ops);
     }
 
@@ -310,7 +311,7 @@ class GK_Widget_Meta extends WP_Widget {
 class GK_Widget_Calendar extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_calendar', 'description' => __( 'A calendar of your site&#8217;s posts') );
+        $widget_ops = array('classname' => 'widget_calendar', 'description' => __( 'A calendar of your site&#8217;s posts').__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         parent::__construct('calendar', __('Calendar'), $widget_ops);
     }
 
@@ -344,7 +345,7 @@ class GK_Widget_Calendar extends WP_Widget {
 class GK_Widget_Text extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_text', 'description' => __('Arbitrary text or HTML'));
+        $widget_ops = array('classname' => 'widget_text', 'description' => __('Arbitrary text or HTML').__('，注：此小工具已被三吉工社改装过了！','gkwp') );
         $control_ops = array('width' => 400, 'height' => 350);
         parent::__construct('text', __('Text'), $widget_ops, $control_ops);
     }
@@ -388,7 +389,7 @@ class GK_Widget_Text extends WP_Widget {
 class GK_Widget_Categories extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array( 'classname' => 'widget_categories', 'description' => __( "A list or dropdown of categories" ) );
+        $widget_ops = array( 'classname' => 'widget_categories', 'description' => __( "A list or dropdown of categories" ).__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         parent::__construct('categories', __('Categories'), $widget_ops);
     }
 
@@ -439,7 +440,7 @@ class GK_Widget_Categories extends WP_Widget {
 class GK_Widget_Recent_Posts extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array('classname' => 'widget_recent_entries', 'description' => __( "The most recent posts on your site") );
+        $widget_ops = array('classname' => 'widget_recent_entries', 'description' => __( "The most recent posts on your site").__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         parent::__construct('recent-posts', __('Recent Posts'), $widget_ops);
         $this->alt_option_name = 'widget_recent_entries';
 
@@ -511,7 +512,7 @@ class GK_Widget_Recent_Posts extends WP_Widget {
 class GK_Widget_RSS extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array( 'description' => __('Entries from any RSS or Atom feed') );
+        $widget_ops = array( 'description' => __('Entries from any RSS or Atom feed').__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         $control_ops = array( 'width' => 400, 'height' => 200 );
         parent::__construct( 'rss', __('RSS'), $widget_ops, $control_ops );
     }
@@ -550,7 +551,7 @@ class GK_Widget_RSS extends WP_Widget {
 class GK_Widget_Tag_Cloud extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array( 'description' => __( "Your most used tags in cloud format") );
+        $widget_ops = array( 'description' => __( "Your most used tags in cloud format").__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         parent::__construct('tag_cloud', __('Tag Cloud'), $widget_ops);
     }
 
@@ -598,7 +599,7 @@ class GK_Widget_Tag_Cloud extends WP_Widget {
  class GK_Nav_Menu_Widget extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array( 'description' => __('Use this widget to add one of your custom menus as a widget.') );
+        $widget_ops = array( 'description' => __('Use this widget to add one of your custom menus as a widget.').__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
         parent::__construct( 'nav_menu', __('Custom Menu'), $widget_ops );
     }
 

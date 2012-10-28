@@ -47,33 +47,13 @@ if (!function_exists('gk_widgets_init')) {
         //注册系统widgets
         require_once get_gk_file('lib/widgets.php');
         //替换默认的widget
-        unregister_widget('WP_Widget_Recent_Comments'); //禁用默认的评论
-        register_widget('GK_Widget_Recent_Comments'); //注册新的评论小工具
-        unregister_widget('WP_Widget_Pages');
-        register_widget('GK_Widget_Pages');
-        unregister_widget('WP_Widget_Links');
-        register_widget('GK_Widget_Links');
-        unregister_widget('WP_Widget_Search');
-        register_widget('GK_Widget_Search');
-        unregister_widget('WP_Widget_Archives');
-        register_widget('GK_Widget_Archives');
-        unregister_widget('WP_Widget_Meta');
-        register_widget('GK_Widget_Meta');
-        unregister_widget('WP_Widget_Text');
-        register_widget('GK_Widget_Text');
-        unregister_widget('WP_Widget_Categories');
-        register_widget('GK_Widget_Categories');
-        unregister_widget('WP_Widget_Recent_Posts');
-        register_widget('GK_Widget_Recent_Posts');
-        unregister_widget('WP_Widget_RSS');
-        register_widget('GK_Widget_RSS');
-        unregister_widget('WP_Widget_Tag_Cloud');
-        register_widget('GK_Widget_Tag_Cloud');
-        unregister_widget('WP_Nav_Menu_Widget');
-        register_widget('GK_Nav_Menu_Widget');
+        $widgets=array('Widget_Recent_Comments','Widget_Recent_Comments','Widget_Pages','Widget_Links','Widget_Search','Widget_Archives','Widget_Meta','Widget_Text','Widget_Categories','Widget_Recent_Posts','Widget_RSS','Widget_Tag_Cloud','Nav_Menu_Widget','Nav_Menu_Widget','Widget_Calendar');
+        foreach($widgets as $widget){
+            unregister_widget('WP_'.$widget);
+            register_widget('GK_'.$widget);
+        }
         //注册边栏
         $sidebars = gk_config('sidebar');
-        
         foreach ($sidebars as $sidebar) {
             unset($sidebar['default']);
             register_sidebar($sidebar);

@@ -9,7 +9,7 @@
 return array(
     array(
             'name' => '网站右侧',
-            'id' => 'sidebar-1',
+            'id' => 'gkwp-right',
             'before_widget' => '<aside id="%1$s" class="widget well %2$s">',
             'after_widget' => "</aside>",
             'before_title' => '<h3 class="right_title">',

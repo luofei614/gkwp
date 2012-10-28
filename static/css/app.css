@@ -1,3 +1,5 @@
+.mt20{ margin-top: 20px;}
+#comment{ width: 600px;}
 .commentlist ul.children {
     list-style: none outside none;
     margin: 10px 0 18px;

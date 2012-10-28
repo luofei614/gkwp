@@ -26,9 +26,6 @@ return array(
             'default-color'=>'fff'
         )
     ),
-    'register_nav_menus'=>array(
-        'primary'=>__('主菜单','gkwp')
-    ),
     //定义头部图片
     'register_default_headers'=>array(
         'img_1' => array(
@@ -65,6 +62,9 @@ return array(
     //定义缩略图
     'thumbnails'=>array(
         //'your_name'=>array(90,90,false)
+    ),
+    'register_nav_menus'=>array(
+        'primary'=>__('主菜单','gkwp')
     ),
     'languages'=>array(
         //'name'=>__ROOT__.'/languages'
