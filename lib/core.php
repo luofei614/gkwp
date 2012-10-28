@@ -11,7 +11,7 @@ define('__PURL__',get_template_directory_uri());
 define('__ROOT__',get_stylesheet_directory());
 define('__URL__',get_stylesheet_directory_uri());
 define('IS_CHILD',is_child_theme());
-$gkwp_version='1.0';
+$gkwp_version='1.1';
 function gk_config($name=null,$value=null){
     static $config=array();
     if(is_array($name)){
