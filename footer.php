@@ -1,4 +1,4 @@
-<footer class="container" role="contentinfo" id="colophon">
+<footer class="container mt20" role="contentinfo" id="colophon">
                                         <div class="well clearfix" id="page-footer">
                         <span class="credits alignleft">&copy; 2012 <a href="http://wp/blue/">第二个站点</a>, all rights reserved.</span>                        <div id="site-generator">
                             <a rel="generator" target="_blank" title="Semantic Personal Publishing Platform" href="http://wordpress.org/">Proudly powered by WordPress</a>

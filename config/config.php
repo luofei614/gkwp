@@ -8,7 +8,7 @@
  */
 return array(
     'debug'=>true,//开启调试后，以管理员身份登录能看见调试信息
-    'sidebar_debug'=>true,
+    'sidebar_debug'=>false,
     'content_width'=>630,
     //设置主题支持
     'theme_support'=>array(

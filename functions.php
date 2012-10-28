@@ -80,10 +80,9 @@ if (!function_exists('gk_set_sidebar_default')) {
         global $_wp_sidebars_widgets;
         //初始化widget
         $widgets = gk_config('widget');
-        
         foreach ($widgets as $name => $setting) {
             $id = 102;
-            $option = get_option($name);
+            $option = get_option('widget_'.$name);
             if (!$option) $option = array();
             if (!isset($option[$id]) || gk_config('sidebar_debug')) {
                 $option[$id] = $setting;

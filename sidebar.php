@@ -6,6 +6,6 @@
  * @author      luofei614 <weibo.com/luofei614>
  * @copyright   2012 3g4k.com.
  */
-if(!dynamic_sidebar('sidebar-1')){
+if(!dynamic_sidebar('gkwp-right')){
     _e('右侧展示没有内容','gkwp');
 }

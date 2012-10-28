@@ -20,14 +20,14 @@
                 ?>
             <li class="clearfix gk_comments_list">
                     <div class="pull-left gk_avatar">
-                            <a href="<?php echo  get_comments_link($comment->comment_post_ID)?>"><?php echo get_avatar($comment->user_id,50) ;?></a>
+                            <a href="<?php echo  get_comments_link($comment->comment_ID)?>"><?php echo get_avatar($comment->user_id,50) ;?></a>
                     </div>
                     <div class="pull-right gk_comments">
-                            <h3><a href="<?php echo  get_comments_link($comment->comment_post_ID)?>"><?php echo get_comment_author_link().' 在  ' .get_the_title($comment->comment_post_ID)?></a></h3>
+                            <h3><a href="<?php echo  get_comments_link($comment->comment_ID)?>"><?php echo get_comment_author_link().' 在  ' .get_the_title($comment->comment_post_ID)?></a></h3>
                             <div>
-                                <a href="<?php echo  get_comments_link($comment->comment_post_ID)?>">
+                                <a href="<?php echo  get_comments_link($comment->comment_ID)?>">
                                 <?php
-                                $comment_c=strip_tags(get_comment_text($comment->comment_post_ID));
+                                $comment_c=strip_tags(get_comment_text($comment->comment_ID));
                                 echo mb_substr($comment_c, 0,100).(mb_strlen($comment_c)>100?'...':'');
                                 ?>
                                 </a>
