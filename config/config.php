@@ -98,5 +98,9 @@ return array(
         // 'test2'=>array('显示名称2','func'),
         // 'test3'=>'显示名称3'
     ),
+    //加载的插件脚本
+    'plugins'=>array(
+        array(!function_exists('gkcloud_menu'),'gkcloud/gkcloud.php')
+    ),
     'ext_config'=>array('sidebar','widget')
 );

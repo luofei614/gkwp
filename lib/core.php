@@ -44,6 +44,8 @@ function get_gk_url($path){
 function gk_url($path){
    echo get_gk_url();
 }
+//加载子主题下的函数文件
+if (file_exists(__ROOT__ . '/common.php')) include __ROOT__ . '/common.php';
 //加载配置
 gk_config(include __PROOT__.'/config/config.php');
 if(IS_CHILD && file_exists(__ROOT__.'/config/config.php')) gk_config(include __ROOT__.'/config/config.php');
@@ -70,7 +72,7 @@ if(!$gkwp_check_upgrade || $gkwp_check_upgrade['last_time']<strtotime('-1 day'))
     }
 }
 
-if(isset($gkwp_check_upgrade['latest_version']) && $gkwp_version!=$gkwp_check_upgrade['latest_version']){
+if(isset($gkwp_check_upgrade['latest_version']) && version_compare($gkwp_version, $gkwp_check_upgrade['latest_version'],'<')){
     $GLOBALS['gk_upgrade_msg'] = $gkwp_check_upgrade['latest_msg'];
     add_action('admin_notices','gk_upgrade_notices');
 }

@@ -7,8 +7,6 @@
  * @copyright   2012 3g4k.com.
  */
 require_once file_exists(get_stylesheet_directory() . '/lib/core.php') ? get_stylesheet_directory() . '/lib/core.php' : get_template_directory() . '/lib/core.php';
-//加载子主题的函数
-if (file_exists(__ROOT__ . '/common.php')) include __ROOT__ . '/common.php';
 if (!isset($content_width)) $content_width = gk_config('content_width');
 add_action('after_setup_theme', 'gk_setup');
 if (!function_exists('gk_setup')) {
@@ -37,7 +35,16 @@ if (!function_exists('gk_setup')) {
         //支持 register_default_headers
         $register_default_headers_config = gk_config('register_default_headers');
         if (!empty($register_default_headers_config)) register_default_headers($register_default_headers_config);
-        require_once get_gk_file('lib/walker.php');
+        //加载插件
+        $plugins=gk_config('plugins');
+        foreach($plugins as $plugin){
+            if(is_array($plugin)){
+                    if($plugin[0]) include get_gk_file('plugins/'.$plugin[1]);
+            }else{
+                 include get_gk_file('plugins/'.$plugin);
+            }
+        }
+        include get_gk_file('lib/walker.php');
     }
 }
 //注册侧栏
