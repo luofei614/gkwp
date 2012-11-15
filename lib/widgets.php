@@ -389,11 +389,12 @@ class GK_Widget_Text extends WP_Widget {
 class GK_Widget_Categories extends WP_Widget {
 
     function __construct() {
-        $widget_ops = array( 'classname' => 'widget_categories', 'description' => __( "A list or dropdown of categories" ).__('，注：此小工具已被三吉工社改装过了！','gkwp')  );
+        $widget_ops = array( 'classname' => 'widget_categories', 'description' => __( "A list or dropdown of categories" ).__('，注：此小工具已被三吉工社改装过了！,可指定显示子分类','gkwp')  );
         parent::__construct('categories', __('Categories'), $widget_ops);
     }
 
     function widget( $args, $instance ) {
+        global $wpdb;
         extract( $args );
         include get_gk_file('widgets/categories.php');
     }
@@ -404,7 +405,7 @@ class GK_Widget_Categories extends WP_Widget {
         $instance['count'] = !empty($new_instance['count']) ? 1 : 0;
         $instance['hierarchical'] = !empty($new_instance['hierarchical']) ? 1 : 0;
         $instance['dropdown'] = !empty($new_instance['dropdown']) ? 1 : 0;
-
+        $instance['cat_id']=$new_instance['cat_id'];
         return $instance;
     }
 
@@ -427,6 +428,10 @@ class GK_Widget_Categories extends WP_Widget {
 
         <input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('hierarchical'); ?>" name="<?php echo $this->get_field_name('hierarchical'); ?>"<?php checked( $hierarchical ); ?> />
         <label for="<?php echo $this->get_field_id('hierarchical'); ?>"><?php _e( 'Show hierarchy' ); ?></label></p>
+        <p>
+            <label for="<?php echo $this->get_field_id('cat_id'); ?>">显示指定分类的子分类：</label><br />
+   <input class="widefat" id="<?php echo $this->get_field_id('cat_id'); ?>" name="<?php echo $this->get_field_name('cat_id'); ?>" type="text" value="<?php echo esc_attr($instance['cat_id']); ?>" style="width:50px;" />(输入分类ID)
+        </p>
 <?php
     }
 
@@ -645,4 +650,50 @@ class GK_Widget_Tag_Cloud extends WP_Widget {
     }
 }
 
+//Gkwp 新增小工具
 
+/**
+ * 读取指定分类下的文章
+ *
+ * @since 2.8.0
+ */
+class GK_cat_post extends WP_Widget {
+
+    function __construct() {
+        $widget_ops = array('classname' => 'widget_cat_post', 'description' => '可以指定显示某分类下的文章,三吉工社开发'  );
+        parent::__construct('cat-posts', '分类文章', $widget_ops);
+        $this->alt_option_name = 'widget_cat_post';
+
+        add_action( 'save_post', array(&$this, 'flush_widget_cache') );
+        add_action( 'deleted_post', array(&$this, 'flush_widget_cache') );
+        add_action( 'switch_theme', array(&$this, 'flush_widget_cache') );
+    }
+
+    function widget($args, $instance) {
+        extract($args);
+        include get_gk_file('widgets/cat_post.php');
+    }
+
+    function update( $new_instance, $old_instance ) {
+             $new_instance['thumb']=isset($new_instance['thumb'])?1:0;
+             $new_instance['cat_id']=intval($new_instance['cat_id']);
+            return $new_instance;
+    }
+
+    function form( $instance ) {
+        $title = isset($instance['title']) ? esc_attr($instance['title']) : '';
+        $number = isset($instance['number']) ? absint($instance['number']) : 5;
+        $cat_id=isset($instance['cat_id'])?$instance['cat_id']:'';
+?>
+        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+        <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+
+        <p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of posts to show:'); ?></label>
+        <input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
+        <p><label for="<?php echo $this->get_field_id('cat_id'); ?>">分类id</label>
+        <input id="<?php echo $this->get_field_id('cat_id'); ?>" name="<?php echo $this->get_field_name('cat_id'); ?>" type="text" value="<?php echo $cat_id; ?>" size="3" /></p>
+        <p><input id="<?php echo $this->get_field_id('thumb'); ?>" name="<?php echo $this->get_field_name('thumb'); ?>" type="checkbox" <?php if(isset($instance['thumb']) && $instance['thumb']) echo ' checked="checked"' ;?> value="1" size="3" /><label for="<?php echo $this->get_field_id('thumb'); ?>">  只显示有特色图片的文章</label>
+        </p>
+<?php
+    }
+}

@@ -45,6 +45,37 @@ if (!function_exists('gk_setup')) {
             }
         }
         include get_gk_file('lib/walker.php');
+        add_filter('template_include','gk_template_include');
+    }
+}
+if(!function_exists('gk_template_include')){
+function gk_template_include($template){
+    //分类模版
+    $cat_tpl=gk_config('category_tpl');
+    if(empty($cat_tpl) || !is_category()) return $template;
+    $obj=get_queried_object();
+    if($tpl_path=gk_get_cat_tpl($obj)){
+        $template=$tpl_path;
+    }
+    return $template;
+}
+}
+if(!function_exists('gk_get_cat_tpl')){
+    function gk_get_cat_tpl($obj){
+        $cat_tpl=gk_config('category_tpl');
+        //进入循环判断
+        if(isset($cat_tpl[$obj->term_id])){
+            return get_gk_file($cat_tpl[$obj->term_id]);
+        }
+        if(isset($cat_tpl[$obj->parent])){
+            return get_gk_file($cat_tpl[$obj->parent]);
+        }
+        if('0'==$obj->parent){
+            return false;
+        }
+        $obj=get_term($obj->parent,'category');
+        if(is_wp_error($obj)) return false;
+        return gk_get_cat_tpl($obj);
     }
 }
 //注册侧栏
@@ -59,6 +90,8 @@ if (!function_exists('gk_widgets_init')) {
             unregister_widget('WP_'.$widget);
             register_widget('GK_'.$widget);
         }
+        //新增小工具
+        register_widget('GK_cat_post');
         //注册边栏
         $sidebars = gk_config('sidebar');
         foreach ($sidebars as $sidebar) {

@@ -10,6 +10,10 @@
             echo $before_title . $title . $after_title;
 
         $cat_args = array('orderby' => 'name', 'show_count' => $c, 'hierarchical' => $h);
+        if($instance['cat_id']){
+            $cat_args['child_of']=$instance['cat_id'];//gkwp 改造，可以指定显示子分类
+        }
+         
 
         if ( $d ) {
             $cat_args['show_option_none'] = __('Select Category');

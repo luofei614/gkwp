@@ -102,5 +102,10 @@ return array(
     'plugins'=>array(
         array(!function_exists('gkcloud_menu'),'gkcloud/gkcloud.php')
     ),
+    //给分类指定模版，包括该分类的子分类也会使用这个模版
+    'category_tpl'=>array(
+        //格式  分类id=>模版文件
+       // 6=>'product.php'
+    ),
     'ext_config'=>array('sidebar','widget')
 );

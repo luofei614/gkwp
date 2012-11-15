@@ -99,7 +99,7 @@ function gk_get_template($template){
     return $template;
 }
 function gk_show_debug(){
-    global $wp_query;
+    global $EZSQL_ERROR;
     $can_create_tpl=array();
     if     ( is_404() ) $can_create_tpl[]='404.php';
     if ( is_search())   $can_create_tpl[]='search.php';
@@ -171,10 +171,9 @@ function gk_show_debug(){
 <legend style="color:gray;font-weight:bold">调试信息</legend>
 <div>
    当前使用模板：<?php echo $GLOBALS['gk_template'] ;?><br />
-        可建立模版： <?php echo  implode(',', $can_create_tpl)?>
+        可建立模版： <?php echo  implode(',', $can_create_tpl)?><br />
         <?php 
         if(isset($GLOBALS['gk_error'])){
-            echo '<br />';
             //显示错误
             foreach($GLOBALS['gk_error'] as $error){
                 switch ($error[0]) {
@@ -200,6 +199,14 @@ function gk_show_debug(){
                     }
             }
         }
+
+        //显示数据库错误
+        if(!empty($EZSQL_ERROR)){
+                foreach ($EZSQL_ERROR as $arr) {
+                    echo $arr['error_str'].'  ,sql: '.$arr['query'].'<br />';
+                }
+        }
+
         ?>
 </div>
 </fieldset>
