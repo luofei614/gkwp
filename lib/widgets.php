@@ -669,10 +669,6 @@ class GK_cat_post extends WP_Widget {
         $widget_ops = array('classname' => 'widget_cat_post', 'description' => '可以指定显示某分类下的文章,三吉工社开发'  );
         parent::__construct('cat-posts', '分类文章', $widget_ops);
         $this->alt_option_name = 'widget_cat_post';
-
-        add_action( 'save_post', array(&$this, 'flush_widget_cache') );
-        add_action( 'deleted_post', array(&$this, 'flush_widget_cache') );
-        add_action( 'switch_theme', array(&$this, 'flush_widget_cache') );
     }
 
     function widget($args, $instance) {
