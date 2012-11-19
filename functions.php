@@ -149,33 +149,60 @@ if (!function_exists('gk_set_sidebar_default')) {
 //分页
 if (!function_exists('gk_page')) {
     function gk_page($query_string) {
-        //TUDO 配置页面显示个数
         global $posts_per_page, $paged;
         $my_query = new WP_Query($query_string . "&posts_per_page=-1");
         $total_posts = $my_query->post_count;
+        $total = gk_config('page_debug')?100:ceil($total_posts / $posts_per_page);
+        $s=gk_config('page_num');//显示个数
         if (empty($paged)) $paged = 1;
-        $prev = $paged - 1;
-        $next = $paged + 1;
-        //为0时 只显示 上一页，下一页， 为1时显示最前最后，上一页下一页和数组， 为2时只显示数字
-        $range = 1;
-        $showitems = ($range * 2) + 1;
-        $pages = ceil($total_posts / $posts_per_page);
-        $start = $paged <= 5 ? 1 : $paged - 5;
-        $end = $pages < 5 || $paged + 5 > $pages ? $pages : $paged + 5;
-        if (1 != $pages) {
-            echo '<div class="pagination "><ul>';
-            echo ($paged > 2 && $paged + $range + 1 > $pages && $showitems < $pages) ? "<li><a href='" . get_pagenum_link(1) . "'>最前一页</a></li" : "";
-            echo ($paged > 1 && $showitems < $pages) ? "<li><a href='" . get_pagenum_link($prev) . "'>上一页</a></li>" : "";
-            
-            for ($i = $start; $i <= $end; $i++) {
-                $class = '';
-                if ($paged == $i) $class = ' class="active"';
-                echo '<li' . $class . '><a href="' . get_pagenum_link($i) . '">' . $i . '</a></li>';
+        if($total<2) return ;
+            $start = 1;
+            $end = $total;
+
+            $q = ceil(($s-1)/2);
+            $h = $s - $q - 1;
+
+            if($paged<=ceil($total/2)){
+                $start = $paged - $q;
+                if($start<1){
+                    $h += ( 1 - $start );
+                    $start = 1;
+                }
+                $end = $paged + $h;
+                if($end>$total){
+                    $end = $total;
+                }
+            }else{
+                $end = $paged + $h;
+                if($end>$total){
+                    $q += $end - $total;
+                    $end = $total;
+                }
+                $start = $paged - $q;
+                if($start<1){
+                    $start = 1;
+                }
             }
-            echo ($paged < $pages && $showitems < $pages) ? "<li><a href='" . get_pagenum_link($next) . "'>下一页</a></li>" : "";
-            echo ($paged < $pages - 1 && $paged + $range - 1 < $pages && $showitems < $pages) ? "<li><a href='" . get_pagenum_link($pages) . "'>最后一页</a></li>" : "";
+            echo '<div class="'.gk_config('page_class').'"><ul>';
+            if($paged==1){
+                echo  '<li><a class="first">上一页</a></li>';
+            }else{
+                echo '<li><a class="first" href="'.sprintf($url,1).'">上一页</a></li>';
+            }
+            for($i=$start;$i<=$end;$i++){
+                if($i==$paged){
+                    echo  '<li class="active"><a class="cur">'.$i.'</a></li>';
+                }else{
+                    echo '<li><a href="'.get_pagenum_link($i) .'">'.$i.'</a></li>';
+                }
+            }
+
+            if($paged==$total){
+                echo  '<li><a class="last">下一页</a></li>';
+            }else{
+                echo  '<li><a class="last" href="'.get_pagenum_link($total).'">下一页</a></li>';
+            }
             echo "</ul></div>\n";
-        }
     }
 }
 //加载css
@@ -329,6 +356,30 @@ if (!function_exists('gk_upload')) {
         echo '<input name="' . $name . '" type="text" id="' . $name . '" value="' . $value . '" class="' . $class . '" /><input type="button"  name="left_upload_button" class="gk_upload_button" value="' . $label . '"  />';
     }
 }
+//显示分类的复选框形式，如果要显示下拉菜单形式可以用函数wp_dropdown_categories
+if(!function_exists('gk_show_categorie_checkbox')){
+    function gk_show_categorie_checkbox($input_name,$attr,$selected=array(),$term_id=0){
+             //层次处理
+          static  $cats=array();
+          if(empty($cats)){
+            $categorys=get_categories();
+            foreach ($categorys as $obj) {
+               $cats[$obj->parent][$obj->term_id]=$obj->name;
+            }
+          }
+      echo '<ul '.$attr.'>';
+          foreach($cats[$term_id] as $id=>$name){
+                $s=in_array($id, $selected)?'checked="checked"':'';
+                echo '<li><input type="checkbox" name="'.$input_name.'" value="'.$id.'" '.$s.'>'.$name;
+                if(isset($cats[$id])){
+                    gk_show_categorie_checkbox($input_name,$attr,$selected,$id);
+                }
+                echo '</li>';
+          }
+      echo '</ul>';
+    }
+}
+
 //评论
 if (!function_exists('gk_comments')) {
     function gk_comments($comment, $args, $depth) {

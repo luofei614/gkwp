@@ -428,9 +428,15 @@ class GK_Widget_Categories extends WP_Widget {
 
         <input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('hierarchical'); ?>" name="<?php echo $this->get_field_name('hierarchical'); ?>"<?php checked( $hierarchical ); ?> />
         <label for="<?php echo $this->get_field_id('hierarchical'); ?>"><?php _e( 'Show hierarchy' ); ?></label></p>
-        <p>
-            <label for="<?php echo $this->get_field_id('cat_id'); ?>">显示指定分类的子分类：</label><br />
-   <input class="widefat" id="<?php echo $this->get_field_id('cat_id'); ?>" name="<?php echo $this->get_field_name('cat_id'); ?>" type="text" value="<?php echo esc_attr($instance['cat_id']); ?>" style="width:50px;" />(输入分类ID)
+                <p>
+            <label for="<?php echo $this->get_field_id('cat_id'); ?>">显示指定子分类：</label><br />
+           <?php wp_dropdown_categories(
+            array('name'=> $this->get_field_name('cat_id'),
+           'id'=>$this->get_field_id('cat_id'),
+           'selected'=>$instance['cat_id'],
+           'hierarchical'=>1
+           )
+           ); ?>
         </p>
 <?php
     }
@@ -690,8 +696,15 @@ class GK_cat_post extends WP_Widget {
 
         <p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of posts to show:'); ?></label>
         <input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
-        <p><label for="<?php echo $this->get_field_id('cat_id'); ?>">分类id</label>
-        <input id="<?php echo $this->get_field_id('cat_id'); ?>" name="<?php echo $this->get_field_name('cat_id'); ?>" type="text" value="<?php echo $cat_id; ?>" size="3" /></p>
+        <p><label for="<?php echo $this->get_field_id('cat_id'); ?>">指定分类：</label>
+            <?php wp_dropdown_categories(
+            array('name'=> $this->get_field_name('cat_id'),
+           'id'=>$this->get_field_id('cat_id'),
+           'selected'=>$instance['cat_id'],
+           'hierarchical'=>1
+           )
+           ); ?>
+        </p>
         <p><input id="<?php echo $this->get_field_id('thumb'); ?>" name="<?php echo $this->get_field_name('thumb'); ?>" type="checkbox" <?php if(isset($instance['thumb']) && $instance['thumb']) echo ' checked="checked"' ;?> value="1" size="3" /><label for="<?php echo $this->get_field_id('thumb'); ?>">  只显示有特色图片的文章</label>
         </p>
 <?php

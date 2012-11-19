@@ -107,5 +107,9 @@ return array(
         //格式  分类id=>模版文件
        // 6=>'product.php'
     ),
+    //分页显示个数
+    'page_num'=>10,
+    'page_debug'=>false,
+    'page_class'=>'pagination',
     'ext_config'=>array('sidebar','widget')
 );

@@ -44,8 +44,6 @@ function get_gk_url($path){
 function gk_url($path){
    echo get_gk_url();
 }
-//加载子主题下的函数文件
-if (file_exists(__ROOT__ . '/common.php')) include __ROOT__ . '/common.php';
 //加载配置
 gk_config(include __PROOT__.'/config/config.php');
 if(IS_CHILD && file_exists(__ROOT__.'/config/config.php')) gk_config(include __ROOT__.'/config/config.php');
@@ -55,6 +53,8 @@ foreach($ext_config as $config_name){
     $config_value=include get_gk_file('config/'.$config_name.'.php');
     gk_config($config_name,$config_value);
 }
+//加载子主题下的函数文件
+if (file_exists(__ROOT__ . '/common.php')) include __ROOT__ . '/common.php';
 
 if(is_admin()){
 //升级检查
